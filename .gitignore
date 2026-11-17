@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.key
+
+# Raw data
+data/raw/*
+!data/raw/.gitkeep
+
+# Generated model responses
+results/raw/*
+!results/raw/.gitkeep
+
+# System
+.DS_Store
