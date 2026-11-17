@@ -1,0 +1,34 @@
+# GLI Global (2022) validation cases for src/gli_reference.R
+#
+# Four synthetic cases (not NHANES participants), chosen to span sex and age:
+#   C1 adult male 40 y, C2 older female 65 y, C3 boy 12 y, C4 young female 25 y.
+# Inputs: sex 1 = male, 2 = female; age in years; height in cm;
+#   fev1_L, fvc_L = observed pre-bronchodilator values in litres.
+# Outputs: *_pred = predicted (median), *_lln = lower limit of normal (5th
+#   centile), *_z = z-score of the observed value. FEV1 and FVC in litres;
+#   fev1fvc as a FRACTION (e.g. 0.815, not 81.5).
+#
+# source=independent_python: standalone implementation (not rspiro code) using
+#   the GLI lookup workbook gli_global_lookuptables_dec6.xlsx, which is the
+#   same workbook rspiro was built from. Agreement therefore confirms rspiro's
+#   arithmetic, not the workbook. 6 dp, tolerance 1e-5.
+# source=gli_calculator: ENTER BY HAND from https://gli-calculator.ersnet.org
+#   (Race-neutral = GLI Global; pre-BD fields only). Copy the displayed numbers
+#   exactly as shown; never fill these from rspiro, this workbook, or the
+#   independent_python rows. All nine values are required for every case; a
+#   blank or non-numeric value fails validation. Tolerance is capped at 0.01 in
+#   code; the calculator displays 3 dp, so differences must also be <= 0.0005.
+#   Entered 2026-11-17 from the official calculator (Race-neutral option).
+#
+# Inputs are whole-year ages because NHANES RIDAGEYR is reported in whole years.
+# Participants with BMIHT=3 ("not straight" height) are kept in the GLI output
+# and flagged (height_not_straight) for a later sensitivity analysis.
+case_id,source,sex,age,height_cm,fev1_L,fvc_L,fev1_pred,fev1_lln,fev1_z,fvc_pred,fvc_lln,fvc_z,fev1fvc_pred,fev1fvc_lln,fev1fvc_z,tolerance
+C1,independent_python,1,40,175.0,3.2,4.3,3.835460,2.938803,-1.176191,4.698602,3.617709,-0.603403,0.815020,0.710188,-1.150846,0.00001
+C1,gli_calculator,1,40,175.0,3.2,4.3,3.835,2.939,-1.176,4.699,3.618,-0.603,0.815,0.710,-1.151,0.01
+C2,independent_python,2,65,160.0,1.8,2.6,2.174709,1.539019,-0.984406,2.747002,1.970729,-0.307446,0.795791,0.670516,-1.388982,0.00001
+C2,gli_calculator,2,65,160.0,1.8,2.6,2.175,1.539,-0.984,2.747,1.971,-0.307,0.796,0.671,-1.389,0.01
+C3,independent_python,1,12,150.0,2.5,2.9,2.387813,1.880053,0.374971,2.781022,2.190019,0.328232,0.865959,0.755405,-0.065644,0.00001
+C3,gli_calculator,1,12,150.0,2.5,2.9,2.388,1.880,0.375,2.781,2.190,0.328,0.866,0.755,-0.066,0.01
+C4,independent_python,2,25,168.0,3.4,3.9,3.338073,2.576528,0.137612,3.861729,2.990058,0.071299,0.869256,0.760504,0.045039,0.00001
+C4,gli_calculator,2,25,168.0,3.4,3.9,3.338,2.577,0.138,3.862,2.990,0.071,0.869,0.761,0.045,0.01

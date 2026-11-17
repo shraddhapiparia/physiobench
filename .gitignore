@@ -26,3 +26,7 @@ results/raw/*
 
 # System
 .DS_Store
+
+# Generated processed data (rebuild with src/ scripts)
+data/processed/*
+!data/processed/.gitkeep

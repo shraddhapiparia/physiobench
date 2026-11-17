@@ -1,0 +1,4 @@
+pandas>=1.5
+
+# R dependencies (src/gli_reference.R), not installed by pip:
+#   R 4.5.2, rspiro 0.5 (CRAN) - GLI Global 2022 equations
