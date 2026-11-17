@@ -1,0 +1,39 @@
+# PhysioBench configuration: guideline definitions and thresholds.
+# src/bdr.py reads every threshold and boundary operator from this file; none
+# is hard-coded elsewhere. Operators: ">=", ">", "<", "<=".
+
+population:
+  adult_min_age_years: 18          # RIDAGEYR >= 18 (age at screening)
+
+quality:
+  acceptable_grades: [A, B]        # CDC: A exceeds / B meets ATS standards
+
+bdr:
+  gina:
+    name: GINA
+    version: "2026"
+    population: adults             # not applied to participants < adult_min_age_years
+    measures: [FEV1, FVC]          # positive if EITHER measure meets BOTH criteria
+    # Source: GINA 2026 Summary Guide p.8 ("Adults: FEV1 or FVC increases by
+    # >=12% and by >=200 mL from the pre-bronchodilator value") and GINA 2026
+    # Strategy Report p.29. Both criteria apply to the same measurement.
+    pct_baseline:   {operator: ">=", threshold: 12}    # 100 * (post - pre) / pre
+    abs_change_ml:  {operator: ">=", threshold: 200}   # post - pre, mL
+  ats_ers:
+    name: ERS/ATS
+    version: "2022"                # Stanojevic et al., Eur Respir J 2022;60:2101499
+    population: all                # computed at all ages; eligibility flags adults
+    measures: [FEV1, FVC]          # positive if EITHER measure meets the criterion
+    pct_predicted:  {operator: ">", threshold: 10}     # 100 * (post - pre) / GLI predicted
+
+obstruction:
+  fixed_ratio:
+    name: Fixed ratio
+    # Calculated at all ages; interpreted for adults only (an adult criterion),
+    # via obstruction_fixed_ratio_adult.
+    interpretation_population: adults
+    fev1_fvc:       {operator: "<", threshold: 0.70}
+  lln:
+    name: GLI Global 2022 LLN
+    reference: GLI Global 2022 (Bowerman et al., AJRCCM 2023), 5th centile
+    fev1_fvc:       {operator: "<", threshold: lln}    # compared with gli_fev1fvc_lln

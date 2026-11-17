@@ -1,4 +1,5 @@
 pandas>=1.5
+pyyaml>=6.0  # config.yaml (tested with 6.0.2)
 
 # R dependencies (src/gli_reference.R), not installed by pip:
 #   R 4.5.2, rspiro 0.5 (CRAN) - GLI Global 2022 equations

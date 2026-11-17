@@ -118,6 +118,51 @@ nine values per case must be present and finite; the tolerance is capped at
 0.01 in code and calculator values must also agree to within 0.0005 (3-dp
 display rounding).
 
+## Bronchodilator response and airflow obstruction
+
+`src/bdr.py` merges `spirometry_intermediate.csv` and `gli_reference.csv` on
+SEQN (one-to-one) and writes `data/processed/spirometry.csv` (7,495 rows).
+All thresholds and boundary operators are in `config.yaml`.
+
+- **Changes** (FEV1 and FVC): absolute change `post − pre` (mL); percent of
+  baseline `100·(post − pre)/pre`; percent of predicted
+  `100·(post − pre)/GLI predicted`. Computed from the original integer mL
+  values, only when pre and post are finite and > 0 (and the prediction for
+  the predicted-based change); negative changes are kept; nothing is rounded
+  or imputed.
+- **GINA 2026** (adults only): positive if FEV1 or FVC rises by ≥ 12 % of
+  baseline and ≥ 200 mL in the same measurement; `gina_fev1_only` uses FEV1
+  alone. Participants under 18 get `not_applicable_pediatric` (GINA's
+  paediatric criterion, ≥ 12 % of predicted FEV1, is not implemented).
+  Source: Global Initiative for Asthma, *GINA 2026 Summary Guide*, p. 8
+  ("Adults: FEV1 or FVC increases by ≥12% and by ≥200 mL from the
+  pre-bronchodilator value"), and *Global Strategy for Asthma Management and
+  Prevention, 2026 update* (Strategy Report), p. 29; ginasthma.org. Wording
+  checked against both PDFs.
+- **ERS/ATS 2022**: positive if the FEV1 or FVC change is > 10 % of the GLI
+  Global predicted value; `ats_ers_fev1_only` uses FEV1 alone. Computed at all
+  ages.
+- **Obstruction** (pre-BD FEV1/FVC): fixed ratio < 0.70; GLI LLN: ratio <
+  `gli_fev1fvc_lln` (full precision). These are physiological flags, not
+  diagnoses of asthma or COPD. Both are calculated at every age, but the fixed
+  ratio is an adult criterion: use `obstruction_fixed_ratio_adult` (blank,
+  status `not_applicable_pediatric`, for participants under 18) for
+  interpretation; `obstruction_fixed_ratio` is the raw calculation. The GLI
+  LLN flag uses age-specific reference values and applies at all ages.
+- **Three-valued logic**: classifications are True, False, or blank (not
+  assessable). An OR is positive if any component is positive, negative only
+  if every component is assessable and negative. Missing or unperformed
+  post-BD tests are never negative. `*_status` columns spell this out
+  (`positive`, `negative`, `not_assessable`, `not_applicable_pediatric`).
+- **Boundaries** are tested by cross-multiplication (e.g. `100·Δ ≥ 12·pre`) so
+  exact boundary values are not lost to floating-point division. In the data,
+  two FEV1 changes are exactly +200 mL; one of them (an eligible adult) is
+  GINA-positive under GINA 2026's ≥ 200 mL and is kept positive.
+- **Eligibility**: `primary_bdr_eligible` requires an adult with pre- and
+  post-BD FEV1 and FVC present, finite and > 0, all four grades A/B, and valid
+  GLI predictions; `primary_bdr_exclusion_reason` gives the first failing
+  criterion. Classifications are still reported for ineligible records.
+
 ## Tests
 
 Run from the repository root:
