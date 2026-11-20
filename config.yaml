@@ -14,14 +14,23 @@ bdr:
     version: "2026"
     population: adults             # not applied to participants < adult_min_age_years
     measures: [FEV1, FVC]          # positive if EITHER measure meets BOTH criteria
-    # Source: GINA 2026 Summary Guide p.8 ("Adults: FEV1 or FVC increases by
-    # >=12% and by >=200 mL from the pre-bronchodilator value") and GINA 2026
-    # Strategy Report p.29. Both criteria apply to the same measurement.
+    # Sources (wording checked against both PDFs):
+    #   GINA 2026 Summary Guide, Table 1, p.8: "Adults: FEV1 or FVC increases by
+    #     >=12% and by >=200 mL from the pre-bronchodilator value"
+    #     https://ginasthma.org/wp-content/uploads/2026/07/GINA-Summary-Guide-2026-WEB-WMS.pdf
+    #   GINA 2026 Strategy Report, Box 1-2, pp.28-29: "Adults: increase from
+    #     baseline in FEV1 or FVC of >=12% and >=200 mL"
+    #     https://ginasthma.org/wp-content/uploads/2026/05/GINA-2026-Strategy-Report-WMS.pdf
+    # Both criteria apply to the same measurement; both operators are inclusive.
     pct_baseline:   {operator: ">=", threshold: 12}    # 100 * (post - pre) / pre
     abs_change_ml:  {operator: ">=", threshold: 200}   # post - pre, mL
   ats_ers:
     name: ERS/ATS
-    version: "2022"                # Stanojevic et al., Eur Respir J 2022;60:2101499
+    version: "2022"
+    # Primary source: Stanojevic S et al. ERS/ATS technical standard on interpretive
+    #   strategies for routine lung function tests. Eur Respir J 2022;60:2101499.
+    #   doi:10.1183/13993003.01499-2021. Criterion: change in FEV1 or FVC >10% of predicted.
+    # Consistent with GINA 2026 Strategy Report p.22 (">10% predicted ... proposed in 2022").
     population: all                # computed at all ages; eligibility flags adults
     measures: [FEV1, FVC]          # positive if EITHER measure meets the criterion
     pct_predicted:  {operator: ">", threshold: 10}     # 100 * (post - pre) / GLI predicted

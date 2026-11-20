@@ -1,0 +1,67 @@
+{
+  "example_id": "SYNTHETIC-EXAMPLE-01",
+  "synthetic": true,
+  "notice": "FULLY SYNTHETIC AND ILLUSTRATIVE. Every measurement was invented for documentation; this is not an NHANES participant and not part of the PhysioBench v0.1.0 ten-item benchmark. It is excluded from item_specs.yaml, items.jsonl, the case mapping and the answer key.",
+  "excluded_from_benchmark": true,
+  "prompt_format": "Same template, rules, neutral question and response schema as the benchmark's bronchodilator-response items (benchmark/prompt_template.txt; src/build_items.py, family 'bdr').",
+  "case_data": {
+    "age_years": 44.0,
+    "sex": "female",
+    "height_cm": 163.0,
+    "fev1_pre_L": 2.04,
+    "fev1_post_L": 2.54,
+    "fvc_pre_L": 3.01,
+    "fvc_post_L": 3.47,
+    "fev1fvc_pre_ratio": 0.6777408637873754,
+    "gli_fev1_pred": 2.79480827552582,
+    "gli_fvc_pred": 3.38784758814049,
+    "gli_fev1fvc_lln": 0.710567896379585,
+    "SPXNQFV1": "A",
+    "SPXNQFVC": "A",
+    "SPXBQFV1": "A",
+    "SPXBQFVC": "A",
+    "post_bd_exam_status": "complete"
+  },
+  "case_data_notes": {
+    "invented": "Age, sex, height, pre/post FEV1 and FVC, quality grades and exam status were invented. Volumes are whole mL.",
+    "derived": "fev1fvc_pre_ratio = 2040 mL / 3010 mL, as computed by src/bdr.py. GLI Global 2022 race-neutral predicted FEV1, predicted FVC and FEV1/FVC LLN computed for a 44-year-old female, 1.630 m, with rspiro 0.5 (pred_GLIgl, LLN_GLIgl) under R 4.5.2, the functions used by src/gli_reference.R.",
+    "quality_grades": "A = exceeds ATS standards (NHANES grading scale)."
+  },
+  "reference_answer": {
+    "classifications": {
+      "gina_2026_fev1": "positive",
+      "gina_2026_fvc": "positive",
+      "gina_2026_overall": "positive",
+      "ers_ats_2022_fev1": "positive",
+      "ers_ats_2022_fvc": "positive",
+      "ers_ats_2022_overall": "positive"
+    },
+    "calculations": {
+      "fev1_change_mL": 500.0,
+      "fev1_change_pct_of_baseline": 24.50980392156863,
+      "fev1_change_pct_of_predicted": 17.890314851952738,
+      "fvc_change_mL": 460.0,
+      "fvc_change_pct_of_baseline": 15.282392026578073,
+      "fvc_change_pct_of_predicted": 13.577942573635175
+    },
+    "physiological_explanation": "FEV1 rose by 500 mL, 24.5% of its pre-bronchodilator value, and FVC rose by 460 mL, 15.3% of its pre-bronchodilator value; each measurement independently meets both GINA 2026 criteria (>=12% and >=200 mL in the same measurement), so GINA is positive. Relative to GLI predicted values, the FEV1 change is 17.9% and the FVC change 13.6% of predicted; both exceed the ERS/ATS 2022 criterion of >10% of predicted, so ERS/ATS is positive. The guidelines use different denominators (pre-bronchodilator value vs predicted value) but agree here because both changes are well clear of every threshold; the smallest margin is FVC, 3.3 percentage points above 12% of baseline and 3.6 points above 10% of predicted. A rise in both FEV1 and FVC is consistent with bronchodilator-reversible airflow limitation, possibly with reduced air trapping.",
+    "limitations": "A positive bronchodilator response is a physiological finding, not a diagnosis: it supports reversible airflow limitation but does not by itself establish asthma, and it can occur in COPD. The baseline FEV1/FVC (0.678) is below 0.70 and below the GLI LLN, but whether obstruction persists after the bronchodilator was not asked and needs post-bronchodilator interpretation and clinical context. This is a single test session; responses vary between occasions, and interpretation depends on repeatability, symptoms and history. Age is recorded in whole years, which slightly affects the predicted values."
+  },
+  "reference_details": {
+    "source": "Computed by src/bdr.py (via build_items.recompute) and checked independently with exact rational arithmetic; verified by tests/test_examples.py.",
+    "fev1fvc_pre_minus_lln": -0.03282703259220954,
+    "fev1fvc_pre_minus_fixed_ratio": -0.022259136212624583,
+    "baseline_obstruction_flags_not_asked": {
+      "fixed_ratio": "positive",
+      "gli_lln": "positive"
+    },
+    "margins": {
+      "fev1_pct_baseline_minus_12": 12.50980392156863,
+      "fev1_mL_minus_200": 300.0,
+      "fev1_pct_predicted_minus_10": 7.890314851952738,
+      "fvc_pct_baseline_minus_12": 3.282392026578073,
+      "fvc_mL_minus_200": 260.0,
+      "fvc_pct_predicted_minus_10": 3.577942573635175
+    }
+  }
+}

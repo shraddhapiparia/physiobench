@@ -1,0 +1,81 @@
+section,population,metric,category,count,denominator,percent,value
+cohort,all,participants,,7495.0,,,
+cohort,all,adults,,5289.0,7495.0,70.56704469646431,
+cohort,adults,primary_bdr_eligible,,275.0,5289.0,5.199470599357157,
+cohort,adults,primary_bdr_exclusion_reason,missing_pre_or_post_fev1_fvc,4971.0,5289.0,93.98752127056154,
+cohort,adults,primary_bdr_exclusion_reason,eligible,275.0,5289.0,5.199470599357157,
+cohort,adults,primary_bdr_exclusion_reason,grade_not_AB,42.0,5289.0,0.7941009642654566,
+cohort,adults,primary_bdr_exclusion_reason,no_valid_gli_prediction,1.0,5289.0,0.018907165815844205,
+measure_contribution,primary_bdr_eligible,GINA,FEV1 only,44.0,275.0,16.0,
+measure_contribution,primary_bdr_eligible,GINA,FVC only,3.0,275.0,1.0909090909090908,
+measure_contribution,primary_bdr_eligible,GINA,both,10.0,275.0,3.6363636363636362,
+measure_contribution,primary_bdr_eligible,GINA,neither,218.0,275.0,79.27272727272727,
+measure_contribution,primary_bdr_eligible,GINA,FEV1 criterion met (any),54.0,275.0,19.636363636363637,
+measure_contribution,primary_bdr_eligible,GINA,FVC criterion met (any),13.0,275.0,4.7272727272727275,
+measure_contribution,primary_bdr_eligible,ERS/ATS,FEV1 only,41.0,275.0,14.909090909090908,
+measure_contribution,primary_bdr_eligible,ERS/ATS,FVC only,4.0,275.0,1.4545454545454546,
+measure_contribution,primary_bdr_eligible,ERS/ATS,both,8.0,275.0,2.909090909090909,
+measure_contribution,primary_bdr_eligible,ERS/ATS,neither,222.0,275.0,80.72727272727273,
+measure_contribution,primary_bdr_eligible,ERS/ATS,FEV1 criterion met (any),49.0,275.0,17.818181818181817,
+measure_contribution,primary_bdr_eligible,ERS/ATS,FVC criterion met (any),12.0,275.0,4.363636363636363,
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,n,,,,275.0
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,mean,,,,185.98545454545456
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,sd,,,,183.98206773354735
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,median,,,,159.0
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,q1,,,,71.0
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,q3,,,,279.5
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,min,,,,-450.0
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,max,,,,1276.0
+bd_change,primary_bdr_eligible,fev1_bd_change_ml,n_negative,,,,31.0
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,n,,,,275.0
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,mean,,,,7.215029433395784
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,sd,,,,6.831302321933209
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,median,,,,6.405846947549441
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,q1,,,,2.482957516231725
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,q3,,,,10.710001169842752
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,min,,,,-12.129380053908356
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,max,,,,41.8086500655308
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_baseline,n_negative,,,,31.0
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,n,,,,275.0
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,mean,,,,5.594340009971711
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,sd,,,,5.0481843108236655
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,median,,,,5.3737334994144454
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,q1,,,,2.372112417686373
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,q3,,,,8.419168217048362
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,min,,,,-13.373649608970815
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,max,,,,31.193530488313655
+bd_change,primary_bdr_eligible,fev1_bd_change_pct_pred,n_negative,,,,31.0
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,n,,,,275.0
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,mean,,,,29.26909090909091
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,sd,,,,198.32817755413438
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,median,,,,6.0
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,q1,,,,-85.0
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,q3,,,,122.5
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,min,,,,-501.0
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,max,,,,934.0
+bd_change,primary_bdr_eligible,fvc_bd_change_ml,n_negative,,,,131.0
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,n,,,,275.0
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,mean,,,,1.0597427576916256
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,sd,,,,5.876157065606031
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,median,,,,0.1432208784213876
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,q1,,,,-2.046716410395122
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,q3,,,,2.916025442134657
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,min,,,,-12.184531886024423
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,max,,,,36.57957244655582
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_baseline,n_negative,,,,131.0
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,n,,,,275.0
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,mean,,,,0.678266614567476
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,sd,,,,5.127404815908043
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,median,,,,0.1673725907152339
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,q1,,,,-2.012919187806161
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,q3,,,,2.9908057467102553
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,min,,,,-13.39828768251102
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,max,,,,27.537814132031055
+bd_change,primary_bdr_eligible,fvc_bd_change_pct_pred,n_negative,,,,131.0
+fvc_negative_change_by_grade,adults_paired_fvc,SPXNQFVC,A,92.0,201.0,45.77114427860697,
+fvc_negative_change_by_grade,adults_paired_fvc,SPXNQFVC,B,47.0,94.0,50.0,
+fvc_negative_change_by_grade,adults_paired_fvc,SPXNQFVC,C,11.0,23.0,47.82608695652174,
+fvc_negative_change_by_grade,adults_paired_fvc,SPXBQFVC,A,117.0,222.0,52.7027027027027,
+fvc_negative_change_by_grade,adults_paired_fvc,SPXBQFVC,B,26.0,78.0,33.333333333333336,
+fvc_negative_change_by_grade,adults_paired_fvc,SPXBQFVC,C,6.0,17.0,35.294117647058826,
+fvc_negative_change_by_grade,adults_paired_fvc,SPXBQFVC,D,1.0,1.0,100.0,

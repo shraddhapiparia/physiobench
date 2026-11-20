@@ -1,0 +1,19 @@
+You are given one spirometry (lung function) record from a research dataset. Use only the information provided. Do not assume, estimate or impute any value that is not given.
+
+PARTICIPANT DATA
+$case_block
+
+RULES
+$rules_block
+
+General conventions
+- Apply every threshold to unrounded values. Round only when reporting.
+- If a classification cannot be determined from the data provided, answer "not_assessable". Not assessable is different from negative.
+- Baseline FEV1/FVC classifications describe a pre-bronchodilator measurement only; they are not a diagnosis of asthma, COPD or any other disease.
+
+QUESTION
+$question
+
+RESPONSE FORMAT
+Reply with a single JSON object and nothing else, using exactly these fields. Give a classification for every field listed. Report calculations as unrounded numbers, or null where a value cannot be computed.
+$response_format

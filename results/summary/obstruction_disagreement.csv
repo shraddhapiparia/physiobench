@@ -1,0 +1,49 @@
+section,population,metric,category,count,denominator,percent,value
+fixed_vs_lln,adults_assessable_any_grade,both_positive,fixed<0.70+ <LLN+,351.0,4584.0,7.657068062827225,
+fixed_vs_lln,adults_assessable_any_grade,first_only_positive,fixed<0.70+ <LLN-,189.0,4584.0,4.12303664921466,
+fixed_vs_lln,adults_assessable_any_grade,second_only_positive,fixed<0.70- <LLN+,116.0,4584.0,2.5305410122164047,
+fixed_vs_lln,adults_assessable_any_grade,both_negative,fixed<0.70- <LLN-,3928.0,4584.0,85.6893542757417,
+fixed_vs_lln,adults_assessable_any_grade,marginal_positive,fixed<0.70,540.0,4584.0,11.780104712041885,
+fixed_vs_lln,adults_assessable_any_grade,marginal_positive,<LLN,467.0,4584.0,10.18760907504363,
+fixed_vs_lln,adults_assessable_any_grade,excluded_not_assessable,,0.0,,,
+fixed_vs_lln,adults_assessable_any_grade,observed_agreement,,,,,0.9334642233856894
+fixed_vs_lln,adults_assessable_any_grade,cohens_kappa,,,,,0.6599677799698813
+fixed_vs_lln_by_age,adults_assessable_any_grade,fixed_only,18-39,0.0,1966.0,0.0,
+fixed_vs_lln_by_age,adults_assessable_any_grade,lln_only,18-39,111.0,1966.0,5.645981688708036,
+fixed_vs_lln_by_age,adults_assessable_any_grade,both_positive,18-39,73.0,1966.0,3.713123092573754,
+fixed_vs_lln_by_age,adults_assessable_any_grade,both_negative,18-39,1782.0,1966.0,90.64089521871821,
+fixed_vs_lln_by_age,adults_assessable_any_grade,cohens_kappa,18-39,,,,0.543840066221013
+fixed_vs_lln_by_age,adults_assessable_any_grade,fixed_only,40-59,33.0,1527.0,2.161100196463654,
+fixed_vs_lln_by_age,adults_assessable_any_grade,lln_only,40-59,5.0,1527.0,0.3274394237066143,
+fixed_vs_lln_by_age,adults_assessable_any_grade,both_positive,40-59,138.0,1527.0,9.037328094302554,
+fixed_vs_lln_by_age,adults_assessable_any_grade,both_negative,40-59,1351.0,1527.0,88.47413228552718,
+fixed_vs_lln_by_age,adults_assessable_any_grade,cohens_kappa,40-59,,,,0.8652350826342631
+fixed_vs_lln_by_age,adults_assessable_any_grade,fixed_only,60+,156.0,1091.0,14.298808432630613,
+fixed_vs_lln_by_age,adults_assessable_any_grade,lln_only,60+,0.0,1091.0,0.0,
+fixed_vs_lln_by_age,adults_assessable_any_grade,both_positive,60+,140.0,1091.0,12.832263978001833,
+fixed_vs_lln_by_age,adults_assessable_any_grade,both_negative,60+,795.0,1091.0,72.86892758936756,
+fixed_vs_lln_by_age,adults_assessable_any_grade,cohens_kappa,60+,,,,0.5667063819387163
+fixed_vs_lln,adults_pre_grades_AB,both_positive,fixed<0.70+ <LLN+,287.0,3917.0,7.327035996936431,
+fixed_vs_lln,adults_pre_grades_AB,first_only_positive,fixed<0.70+ <LLN-,157.0,3917.0,4.0081695174878735,
+fixed_vs_lln,adults_pre_grades_AB,second_only_positive,fixed<0.70- <LLN+,105.0,3917.0,2.6806229257084504,
+fixed_vs_lln,adults_pre_grades_AB,both_negative,fixed<0.70- <LLN-,3368.0,3917.0,85.98417155986725,
+fixed_vs_lln,adults_pre_grades_AB,marginal_positive,fixed<0.70,444.0,3917.0,11.335205514424304,
+fixed_vs_lln,adults_pre_grades_AB,marginal_positive,<LLN,392.0,3917.0,10.00765892264488,
+fixed_vs_lln,adults_pre_grades_AB,excluded_not_assessable,,0.0,,,
+fixed_vs_lln,adults_pre_grades_AB,observed_agreement,,,,,0.9331120755680368
+fixed_vs_lln,adults_pre_grades_AB,cohens_kappa,,,,,0.6493256828255851
+fixed_vs_lln_by_age,adults_pre_grades_AB,fixed_only,18-39,0.0,1720.0,0.0,
+fixed_vs_lln_by_age,adults_pre_grades_AB,lln_only,18-39,100.0,1720.0,5.813953488372093,
+fixed_vs_lln_by_age,adults_pre_grades_AB,both_positive,18-39,62.0,1720.0,3.604651162790698,
+fixed_vs_lln_by_age,adults_pre_grades_AB,both_negative,18-39,1558.0,1720.0,90.5813953488372,
+fixed_vs_lln_by_age,adults_pre_grades_AB,cohens_kappa,18-39,,,,0.529014874367456
+fixed_vs_lln_by_age,adults_pre_grades_AB,fixed_only,40-59,29.0,1329.0,2.18209179834462,
+fixed_vs_lln_by_age,adults_pre_grades_AB,lln_only,40-59,5.0,1329.0,0.3762227238525207,
+fixed_vs_lln_by_age,adults_pre_grades_AB,both_positive,40-59,115.0,1329.0,8.653122648607976,
+fixed_vs_lln_by_age,adults_pre_grades_AB,both_negative,40-59,1180.0,1329.0,88.78856282919489,
+fixed_vs_lln_by_age,adults_pre_grades_AB,cohens_kappa,40-59,,,,0.8571401472038853
+fixed_vs_lln_by_age,adults_pre_grades_AB,fixed_only,60+,128.0,868.0,14.746543778801843,
+fixed_vs_lln_by_age,adults_pre_grades_AB,lln_only,60+,0.0,868.0,0.0,
+fixed_vs_lln_by_age,adults_pre_grades_AB,both_positive,60+,110.0,868.0,12.672811059907835,
+fixed_vs_lln_by_age,adults_pre_grades_AB,both_negative,60+,630.0,868.0,72.58064516129032,
+fixed_vs_lln_by_age,adults_pre_grades_AB,cohens_kappa,60+,,,,0.5550571877102489

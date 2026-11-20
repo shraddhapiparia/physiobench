@@ -24,9 +24,31 @@ data/raw/*
 results/raw/*
 !results/raw/.gitkeep
 
+# Task 9 model-run outputs: raw Gemini responses for the private items (never publish)
+results/model_runs/
+
 # System
 .DS_Store
 
 # Generated processed data (rebuild with src/ scripts)
 data/processed/*
 !data/processed/.gitkeep
+
+# Participant-level benchmark candidates (pseudonymous, but derived from public NHANES records)
+benchmark/candidate_cases.csv
+
+# PRIVATE benchmark content: item specifications, gold answers, grading rules,
+# grading review, gold-specific tests. Never push to the public repository
+# until a release decision is made. tests/test_release_protection.py checks this.
+# (data/processed/candidate_seqn_mapping.csv and benchmark_controls.csv are
+# covered by data/processed/* above.)
+benchmark/item_specs.yaml
+benchmark/grading_spec.yaml
+benchmark/items.jsonl
+benchmark/items_review.md
+benchmark/control_selection.md
+benchmark/version_manifest.json
+grading/answer_key.jsonl
+grading/grading_review.md
+grading/manual_scores.csv
+tests/private/

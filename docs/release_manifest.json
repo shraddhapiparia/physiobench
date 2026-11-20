@@ -1,0 +1,168 @@
+{
+  "benchmark": "PhysioBench",
+  "benchmark_version": "0.1.0",
+  "composition": {
+    "bdr_controls": 2,
+    "challenge_items": 8,
+    "controls": "one concordant-negative and one concordant-positive BDR control, both selected retrospectively (not pre-registered); not healthy/normal-lung-function controls",
+    "design": "purposively selected challenge set; not a representative sample"
+  },
+  "data_sources": {
+    "files": [
+      "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/SPX_G.xpt",
+      "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.xpt",
+      "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BMX_G.xpt"
+    ],
+    "survey": "NHANES 2011-2012 (cycle G), CDC public-use files; unweighted"
+  },
+  "environment": {
+    "numpy": "2.0.2",
+    "pandas": "2.3.3",
+    "platform": "Darwin 27.2.0 arm64",
+    "python": "3.9.6",
+    "pyyaml": "6.0.2",
+    "r": "R version 4.5.2 (2025-10-31)",
+    "rspiro": "0.5"
+  },
+  "freeze_date": "2026-11-20",
+  "frozen_public_files": {
+    "guideline_config": {
+      "path": "config.yaml",
+      "sha256": "726ff47f9c36894c0269ca34fac7f293f17373490107c6a05664d128b724b8d3"
+    },
+    "prompt_template": {
+      "path": "benchmark/prompt_template.txt",
+      "sha256": "d79154781d6a1518edb32cf140bbd3329562fbe42cdc6d7df5b51778b17b1d70"
+    }
+  },
+  "generation_code_sha256": {
+    "src/bdr.py": {
+      "path": "src/bdr.py",
+      "sha256": "32770d3d0d4f8eb07ebf66328b25cabe85cb552e5102274380795adf8d8c45ca"
+    },
+    "src/build_items.py": {
+      "path": "src/build_items.py",
+      "sha256": "0099743f60834e25eb9f2b5642af5603f2456f68ce898f6a38a61ca3f85c013d"
+    },
+    "src/download_nhanes.py": {
+      "path": "src/download_nhanes.py",
+      "sha256": "e76f4016fac4a78391c8a06235e3f01b3457ca839282661d538f44304b8e3c61"
+    },
+    "src/freeze_manifest.py": {
+      "path": "src/freeze_manifest.py",
+      "sha256": "21c86ad4e38ae75e7f669e77cb1cb23a26314a5bfe7850dec880c6d648b83169"
+    },
+    "src/gli_reference.R": {
+      "path": "src/gli_reference.R",
+      "sha256": "e049310f3f63806677d95751e580ea9bf5827bc03147d9ca382487a7429b0fea"
+    },
+    "src/prepare_spirometry.py": {
+      "path": "src/prepare_spirometry.py",
+      "sha256": "548affd00947b789fbe0980fd39d68ffff7b838acd5d694016fb8a033334a206"
+    },
+    "src/summarize.py": {
+      "path": "src/summarize.py",
+      "sha256": "b7f49dbb27c7a488b77514e31174082a548cf9009528fcbe12d9776637a2c857"
+    }
+  },
+  "generation_commands": [
+    "python3 src/download_nhanes.py",
+    "python3 src/prepare_spirometry.py",
+    "Rscript src/gli_reference.R",
+    "python3 src/bdr.py",
+    "python3 src/summarize.py        # needs private data/processed/benchmark_controls.csv",
+    "python3 src/build_items.py      # needs private benchmark/item_specs.yaml and grading_spec.yaml",
+    "python3 src/freeze_manifest.py --check",
+    "python3 -m unittest discover -s tests -v"
+  ],
+  "gli_implementation": {
+    "age": "RIDAGEYR, whole years; rspiro looks up splines at floor(age*4)/4, exact for whole years; range 3-95",
+    "equations": "GLI Global 2022, race-neutral",
+    "functions": "rspiro::pred_GLIgl, LLN_GLIgl, zscore_GLIgl (src/gli_reference.R)",
+    "height": "BMXHT / 100 (m); BMIHT = 3 retained and flagged height_not_straight",
+    "imputation": "none; predictions NA when age, sex or height unavailable",
+    "lln": "5th centile; rspiro uses z = -1.645",
+    "sex": "RIAGENDR (1 = male, 2 = female)",
+    "validation": "Four reference cases (C1-C4) against the ERS GLI calculator (3 dp) and an independent Python implementation from the GLI lookup workbook; max |difference| 3e-14 over all participants with predictions (docs/methodology.md, Validation)"
+  },
+  "guideline_sources": {
+    "ers_ats_2022": [
+      "Stanojevic S et al. ERS/ATS technical standard on interpretive strategies for routine lung function tests. Eur Respir J 2022;60:2101499. doi:10.1183/13993003.01499-2021. Change in FEV1 or FVC >10% of predicted."
+    ],
+    "gina_2026": [
+      "GINA 2026 Summary Guide, Table 1, p.8: 'Adults: FEV1 or FVC increases by >=12% and by >=200 mL from the pre-bronchodilator value'. https://ginasthma.org/wp-content/uploads/2026/07/GINA-Summary-Guide-2026-WEB-WMS.pdf",
+      "GINA 2026 Strategy Report, Box 1-2, pp.28-29: 'Adults: increase from baseline in FEV1 or FVC of >=12% and >=200 mL'. https://ginasthma.org/wp-content/uploads/2026/05/GINA-2026-Strategy-Report-WMS.pdf"
+    ],
+    "gli_global_2022": [
+      "Bowerman C et al. A race-neutral approach to the interpretation of lung function measurements. Am J Respir Crit Care Med 2023;207:768-774 (GLI Global 2022)."
+    ]
+  },
+  "guideline_thresholds": {
+    "adult_min_age_years": 18,
+    "ers_ats": {
+      "measures": [
+        "FEV1",
+        "FVC"
+      ],
+      "pct_predicted": {
+        "operator": ">",
+        "threshold": 10
+      },
+      "version": "2022"
+    },
+    "fixed_ratio": {
+      "operator": "<",
+      "threshold": 0.7
+    },
+    "gina": {
+      "abs_change_ml": {
+        "operator": ">=",
+        "threshold": 200
+      },
+      "measures": [
+        "FEV1",
+        "FVC"
+      ],
+      "pct_baseline": {
+        "operator": ">=",
+        "threshold": 12
+      },
+      "population": "adults",
+      "version": "2026"
+    },
+    "lln": "GLI Global 2022 (Bowerman et al., AJRCCM 2023), 5th centile",
+    "quality_grades": [
+      "A",
+      "B"
+    ]
+  },
+  "n_items": 10,
+  "private_artifacts": [
+    "benchmark/candidate_cases.csv",
+    "benchmark/control_selection.md",
+    "benchmark/grading_spec.yaml",
+    "benchmark/item_specs.yaml",
+    "benchmark/items.jsonl",
+    "benchmark/items_review.md",
+    "data/processed/benchmark_controls.csv",
+    "data/processed/candidate_seqn_mapping.csv",
+    "grading/answer_key.jsonl",
+    "grading/grading_review.md"
+  ],
+  "raw_data_sha256": {
+    "data/raw/BMX_G.xpt": {
+      "path": "data/raw/BMX_G.xpt",
+      "sha256": "4814bfc3047ed400b9d43d285f8c3ea7c940ac6489404a9b699579715d158ec3"
+    },
+    "data/raw/DEMO_G.xpt": {
+      "path": "data/raw/DEMO_G.xpt",
+      "sha256": "eaf0525d1952626885af3e935415a1f66ad62c18698080e7354789c125af252d"
+    },
+    "data/raw/SPX_G.xpt": {
+      "path": "data/raw/SPX_G.xpt",
+      "sha256": "58177b07ad94a2c005b0c9494cddb82fc94ec8f5c6c13a91b83da035f20770d9"
+    }
+  },
+  "rubric": "8 points per item (classification_and_calculation 4, scientific_explanation 3, limits_and_uncertainty 1); critical-error flags recorded independently",
+  "rubric_version": "0.1.0"
+}
